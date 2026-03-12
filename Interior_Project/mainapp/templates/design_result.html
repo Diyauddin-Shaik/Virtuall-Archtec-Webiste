@@ -1,0 +1,152 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="design-wrapper">
+
+<div class="design-card">
+
+<h2>Interior Design Result</h2>
+
+<h3>{{design.room_type}}</h3>
+
+
+<!-- ROOM DETAILS -->
+
+{% if design.room_type == "Living Room" %}
+
+<p><b>Wall Color:</b> {{design.wall_color}}</p>
+<p><b>Lamp Type:</b> {{design.lamp_type}}</p>
+<p><b>Sofa / Furniture:</b> {{design.furniture}}</p>
+
+{% endif %}
+
+
+
+{% if design.room_type == "Kitchen" %}
+
+<p><b>Cabinet Color:</b> {{design.wall_color}}</p>
+<p><b>Lighting Style:</b> {{design.lamp_type}}</p>
+<p><b>Countertop:</b> {{design.furniture}}</p>
+
+{% endif %}
+
+
+
+{% if design.room_type == "Bedroom" %}
+
+<p><b>House Type:</b> {{design.house_type}}</p>
+<p><b>Bedroom Style:</b> {{design.furniture}}</p>
+
+{% endif %}
+
+
+
+{% if design.room_type == "Bathroom" %}
+
+<p><b>Tile Style:</b> {{design.wall_color}}</p>
+<p><b>Shower Type:</b> {{design.lamp_type}}</p>
+<p><b>Sink Style:</b> {{design.furniture}}</p>
+
+{% endif %}
+
+
+
+{% if design.room_type == "Dining Room" %}
+
+<p><b>Dining Table:</b> {{design.furniture}}</p>
+<p><b>Lighting Style:</b> {{design.lamp_type}}</p>
+
+{% endif %}
+
+
+
+{% if design.room_type == "Kids Room" %}
+
+<p><b>Theme:</b> {{design.wall_color}}</p>
+<p><b>Furniture:</b> {{design.furniture}}</p>
+
+{% endif %}
+
+
+
+<!-- IMAGE -->
+
+<h3>Uploaded Room Photo</h3>
+
+<img src="{{design.image.url}}"
+     width="450"
+     style="border-radius:10px;margin-bottom:20px;">
+
+
+
+<!-- DYNAMIC SUGGESTION BOX -->
+
+<div style="
+background:#f5f7fb;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+margin-top:20px;
+">
+
+<h3>Interior Suggestion</h3>
+
+<p>
+
+{{ suggestion }}
+
+</p>
+
+</div>
+
+
+
+<br>
+
+
+
+<!-- NAVIGATION BUTTONS -->
+
+<a href="/dashboard/">
+
+<button style="
+padding:10px 20px;
+background:#3498db;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+">
+
+Back to Dashboard
+
+</button>
+
+</a>
+
+
+
+<a href="/chat/">
+
+<button style="
+padding:10px 20px;
+background:#27ae60;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-left:10px;
+">
+
+Ask Interior Expert
+
+</button>
+
+</a>
+
+
+
+</div>
+
+</div>

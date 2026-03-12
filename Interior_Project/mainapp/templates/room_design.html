@@ -1,0 +1,351 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<header>
+<h2>{{room}} Design</h2>
+</header>
+
+<div class="design-wrapper">
+
+<div class="design-card">
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<h2>{{room}} Design</h2>
+
+
+<!-- LIVING ROOM -->
+{% if room == "Living Room" %}
+
+<label>Wall Color</label>
+<input type="text" name="wall">
+
+<label>Lamp Type</label>
+<input type="text" name="lamp">
+
+<label>Sofa Style</label>
+<select name="furniture">
+<option>Modern</option>
+<option>Luxury</option>
+<option>Minimal</option>
+<option>Classic</option>
+</select>
+
+{% endif %}
+
+
+
+<!-- KITCHEN -->
+{% if room == "Kitchen" %}
+
+<label>Cabinet Color</label>
+<input type="text" name="wall">
+
+<label>Countertop Style</label>
+<select name="furniture">
+<option>Granite</option>
+<option>Marble</option>
+<option>Quartz</option>
+</select>
+
+<label>Lighting Style</label>
+<select name="lamp">
+<option>Warm Lighting</option>
+<option>LED Panel</option>
+<option>Spot Lights</option>
+</select>
+
+{% endif %}
+
+
+
+<!-- BEDROOM -->
+{% if room == "Bedroom" %}
+
+<label>House Type</label>
+
+<select name="house" id="houseType" onchange="showBedrooms()">
+
+<option value="1BHK">1BHK</option>
+<option value="2BHK">2BHK</option>
+<option value="3BHK">3BHK</option>
+
+</select>
+
+<br><br>
+
+<div id="bedroomOptions"></div>
+
+{% endif %}
+
+
+
+<!-- BATHROOM -->
+{% if room == "Bathroom" %}
+
+<label>Tile Style</label>
+<select name="wall">
+<option>Marble Tiles</option>
+<option>Ceramic Tiles</option>
+<option>Stone Finish</option>
+</select>
+
+<label>Sink Style</label>
+<select name="furniture">
+<option>Wall Mounted</option>
+<option>Counter Top</option>
+</select>
+
+<label>Shower Type</label>
+<select name="lamp">
+<option>Rain Shower</option>
+<option>Hand Shower</option>
+</select>
+
+{% endif %}
+
+
+
+<!-- DINING ROOM -->
+{% if room == "Dining Room" %}
+
+<label>Dining Table Type</label>
+<select name="furniture">
+<option>Wooden Table</option>
+<option>Glass Table</option>
+<option>Round Dining</option>
+</select>
+
+<label>Chair Style</label>
+<select>
+<option>Luxury Chairs</option>
+<option>Minimal Chairs</option>
+<option>Modern Chairs</option>
+</select>
+
+<label>Lighting Style</label>
+<select name="lamp">
+<option>Chandelier</option>
+<option>Pendant Light</option>
+<option>Warm Lighting</option>
+</select>
+
+{% endif %}
+
+
+
+<!-- KIDS ROOM -->
+{% if room == "Kids Room" %}
+
+<label>Theme</label>
+<select name="wall">
+<option>Cartoon Theme</option>
+<option>Space Theme</option>
+<option>Nature Theme</option>
+</select>
+
+<label>Wall Color</label>
+<select>
+<option>Blue</option>
+<option>Pink</option>
+<option>Yellow</option>
+<option>Green</option>
+</select>
+
+<label>Study Table Style</label>
+<select name="furniture">
+<option>Minimal Desk</option>
+<option>Wooden Desk</option>
+<option>Storage Desk</option>
+</select>
+
+{% endif %}
+
+
+
+<h3>Upload Room Photo</h3>
+
+<div class="preview-area">
+
+<img id="preview" class="preview-img">
+
+<div class="design-suggestion">
+
+<h4>Interior Suggestion</h4>
+
+<p id="suggestionText">
+Upload a room photo to see interior design suggestions.
+</p>
+
+</div>
+
+</div>
+
+<br>
+
+<input type="file" name="image" onchange="previewImage(event)">
+
+<br><br>
+
+<button type="submit">Submit Design</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+function previewImage(event){
+
+var reader = new FileReader();
+
+reader.onload=function(){
+
+var output=document.getElementById('preview');
+
+output.src=reader.result;
+output.style.display="block";
+
+generateSuggestion();
+
+}
+
+reader.readAsDataURL(event.target.files[0]);
+
+}
+
+
+
+function generateSuggestion(){
+
+var room="{{room}}";
+
+var suggestion="";
+
+if(room=="Living Room"){
+suggestion="Recommended: Warm wall colors, modern sofa, soft ambient lighting.";
+}
+
+if(room=="Kitchen"){
+suggestion="Recommended: Light cabinets, marble countertop and pendant lighting.";
+}
+
+if(room=="Bedroom"){
+suggestion="Recommended: Neutral wall colors with cozy bedding and warm bedside lighting.";
+}
+
+if(room=="Bathroom"){
+suggestion="Recommended: Marble tiles with rain shower and minimal vanity.";
+}
+
+if(room=="Dining Room"){
+suggestion="Recommended: Wooden dining table with chandelier lighting.";
+}
+
+if(room=="Kids Room"){
+suggestion="Recommended: Bright playful colors with study corner.";
+}
+
+document.getElementById("suggestionText").innerHTML=suggestion;
+
+}
+
+
+
+function showBedrooms(){
+
+var type=document.getElementById("houseType").value;
+var div=document.getElementById("bedroomOptions");
+
+div.innerHTML="";
+
+if(type=="1BHK"){
+
+div.innerHTML=`
+
+<label>Bedroom Style</label>
+
+<select name="furniture">
+<option>Modern</option>
+<option>Minimal</option>
+<option>Luxury</option>
+</select>
+
+<label>Bed Type</label>
+
+<select>
+<option>Queen Bed</option>
+<option>King Bed</option>
+<option>Single Bed</option>
+</select>
+
+`;
+
+}
+
+if(type=="2BHK"){
+
+div.innerHTML=`
+
+<label>Master Bedroom Style</label>
+
+<select name="furniture">
+<option>Modern</option>
+<option>Luxury</option>
+<option>Minimal</option>
+</select>
+
+<label>Second Bedroom Style</label>
+
+<select>
+<option>Kids Bedroom</option>
+<option>Guest Bedroom</option>
+<option>Study Room</option>
+</select>
+
+`;
+
+}
+
+if(type=="3BHK"){
+
+div.innerHTML=`
+
+<label>Master Bedroom</label>
+
+<select>
+<option>Luxury</option>
+<option>Modern</option>
+</select>
+
+<label>Bedroom 2</label>
+
+<select>
+<option>Kids Room</option>
+<option>Guest Room</option>
+</select>
+
+<label>Bedroom 3</label>
+
+<select>
+<option>Study Room</option>
+<option>Guest Room</option>
+</select>
+
+`;
+
+}
+
+}
+
+window.onload=showBedrooms;
+
+</script>

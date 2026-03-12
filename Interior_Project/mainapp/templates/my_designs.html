@@ -1,0 +1,162 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* page container */
+
+.page-wrapper{
+    padding:40px;
+}
+
+/* title */
+
+.page-title{
+    color:white;
+    background:rgba(0,0,0,0.6);
+    padding:12px 20px;
+    border-radius:10px;
+    display:inline-block;
+    margin-bottom:20px;
+}
+
+/* button */
+
+.design-btn{
+    padding:10px 20px;
+    background:#3498db;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    margin-bottom:25px;
+}
+
+/* grid */
+
+.design-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+/* card */
+
+.design-card{
+    background:rgba(0,0,0,0.65);
+    color:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.5);
+    backdrop-filter:blur(6px);
+    transition:transform 0.2s ease;
+}
+
+.design-card:hover{
+    transform:scale(1.02);
+}
+
+/* image */
+
+.design-image{
+    width:100%;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+/* date */
+
+.design-date{
+    margin-top:10px;
+    font-size:12px;
+    color:#ddd;
+}
+
+/* empty box */
+
+.empty-box{
+    margin-top:40px;
+    padding:30px;
+    background:rgba(0,0,0,0.65);
+    border-radius:10px;
+    color:white;
+    text-align:center;
+}
+
+.start-btn{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#2ecc71;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+</style>
+
+
+
+<div class="page-wrapper">
+
+<h2 class="page-title">My Interior Designs</h2>
+
+<br>
+
+<a href="/rooms/">
+<button class="design-btn">Design New Room</button>
+</a>
+
+
+
+{% if designs %}
+
+<div class="design-grid">
+
+{% for design in designs %}
+
+<div class="design-card">
+
+<h3>{{ design.room_type }}</h3>
+
+<p><b>Wall Color:</b> {{ design.wall_color }}</p>
+<p><b>Lamp Type:</b> {{ design.lamp_type }}</p>
+<p><b>Furniture:</b> {{ design.furniture }}</p>
+
+{% if design.image %}
+<img src="{{ design.image.url }}" class="design-image">
+{% endif %}
+
+<p class="design-date">
+Created on {{ design.created_at }}
+</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty-box">
+
+<h3>No Designs Yet</h3>
+
+<p>You haven't created any interior designs yet.</p>
+
+<a href="/rooms/">
+<button class="start-btn">Start Designing</button>
+</a>
+
+</div>
+
+{% endif %}
+
+</div>

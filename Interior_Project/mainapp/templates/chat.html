@@ -1,0 +1,19 @@
+<h2>Interior Design Support Chat</h2>
+
+<div style="height:300px;overflow-y:auto;border:1px solid #ccc;padding:10px;margin-bottom:20px;">
+
+{% for msg in messages %}
+<p><b>{{msg.user.username}}:</b> {{msg.message}}</p>
+{% endfor %}
+
+</div>
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="text" name="message" placeholder="Ask your design question..." style="width:70%;padding:10px;">
+<button type="submit">Send</button>
+
+</form>
+
+<a href="/rooms/">Back to Dashboard</a>

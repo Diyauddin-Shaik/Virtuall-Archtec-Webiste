@@ -1,0 +1,109 @@
+<!-- {% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<header>
+<h2>Select Room</h2>
+</header>
+
+<div class="container rooms">
+
+<div class="room-card">
+<h3>Living Room</h3>
+<a href="/design"><button>Design</button></a>
+</div>
+
+<div class="room-card">
+<h3>Kitchen</h3>
+<a href="/design"><button>Design</button></a>
+</div>
+
+<div class="room-card">
+<h3>Bedroom</h3>
+<a href="/design"><button>Design</button></a>
+</div>
+
+<div class="room-card">
+<h3>Bathroom</h3>
+<a href="/design"><button>Design</button></a>
+</div>
+
+<div class="room-card">
+<h3>Dining Room</h3>
+<a href="/design"><button>Design</button></a>
+</div>
+
+<div class="room-card">
+<h3>Kids Room</h3>
+<a href="/design"><button>Design</button></a>
+</div>
+
+</div> -->
+
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<header>
+
+<h2>Choose a Room to Design</h2>
+
+<div style="position:absolute; right:40px; top:20px;">
+
+<a href="/chat/">
+<button style="margin-right:10px;">Chat</button>
+</a>
+
+<a href="/my-designs/">
+<button style="margin-right:10px;">My Designs</button>
+</a>
+
+<a href="/logout/">
+<button>Logout</button>
+</a>
+
+</div>
+
+</header>
+
+
+<div class="room-container">
+
+<a href="/design?room=Living Room">
+<div class="room-box living">
+<h3>Living Room</h3>
+</div>
+</a>
+
+<a href="/design?room=Kitchen">
+<div class="room-box kitchen">
+<h3>Kitchen</h3>
+</div>
+</a>
+
+<a href="/design?room=Bedroom">
+<div class="room-box bedroom">
+<h3>Bedroom</h3>
+</div>
+</a>
+
+<a href="/design?room=Bathroom">
+<div class="room-box bathroom">
+<h3>Bathroom</h3>
+</div>
+</a>
+
+<a href="/design?room=Dining Room">
+<div class="room-box dining">
+<h3>Dining Room</h3>
+</div>
+</a>
+
+<a href="/design?room=Kids Room">
+<div class="room-box kids">
+<h3>Kids Room</h3>
+</div>
+</a>
+
+</div>
